@@ -1376,6 +1376,15 @@ h1 {
 }
 .finale-photo:nth-child(even) { transform: rotate(2deg); }
 .finale-photo img { display: block; width: 100%; height: auto; border-radius: 0; }
+.finale-photo figcaption {
+  margin-top: 16px;
+  color: #7a3040;
+  font-family: "Cormorant Garamond", Palatino, Georgia, serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  text-align: center;
+}
 .finale-photo::before {
   content: "";
   position: absolute;
