@@ -12,6 +12,17 @@
 .type-character { transition: opacity 80ms linear; }
 .type-pending { opacity: 0; }
 
+#writing-pen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  width: 36px;
+  height: 44px;
+  pointer-events: none;
+  filter: drop-shadow(2px 3px 2px rgba(65, 30, 35, 0.25));
+}
+
 .monglish-card { width: min(100%, 800px); }
 .monglish-photo { margin: 28px 0 0; }
 .monglish-frame {

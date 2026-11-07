@@ -388,8 +388,22 @@ document.addEventListener("keydown", startMusicOnInteraction);
 
 let typingFrame = null;
 let typingCharacters = [];
+const writingPen = document.getElementById("writing-pen");
+let penCharacter = null;
+
+function positionWritingPen() {
+  if (!penCharacter || !penCharacter.isConnected) { writingPen.hidden = true; return; }
+  const rect = penCharacter.getBoundingClientRect();
+  writingPen.hidden = rect.bottom < 0 || rect.top > window.innerHeight || rect.right < 0 || rect.left > window.innerWidth;
+  writingPen.style.transform = `translate(${Math.min(rect.right, window.innerWidth - 36) - 3}px, ${rect.bottom - 44}px)`;
+}
+document.addEventListener("scroll", positionWritingPen, { capture: true, passive: true });
+window.addEventListener("resize", positionWritingPen);
 
 function typePageText(page) {
+  writingPen.hidden = true;
+  penCharacter = null;
+  const usePen = page.matches(".page-letter, .page-monglish, .page-station");
   if (typingFrame !== null) cancelAnimationFrame(typingFrame);
   typingCharacters.forEach((character) => character.classList.remove("type-pending"));
   typingFrame = null;
@@ -397,7 +411,7 @@ function typePageText(page) {
 
   const targets = [...page.querySelectorAll("h1, h2, h3, p, li"), document.querySelector(".love-credit")].filter((element) => element && !element.hidden);
   targets.forEach((element) => {
-    if (element.closest("figcaption, .upload") || element.id === "cake-hint" || element.classList.contains("scroll-reminder")) return;
+    if (element.closest(".upload") || (!usePen && element.closest("figcaption")) || element.id === "cake-hint" || element.classList.contains("scroll-reminder")) return;
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
     const nodes = [];
     while (walker.nextNode()) {
@@ -426,6 +440,13 @@ function typePageText(page) {
     if (started === null) started = time;
     const count = Math.min(typingCharacters.length, Math.max(0, Math.floor((time - started - 400) / 28) + 1));
     while (cursor < count) typingCharacters[cursor++].classList.remove("type-pending");
+    if (usePen && cursor > 0 && cursor < typingCharacters.length) {
+      penCharacter = typingCharacters[cursor - 1];
+      positionWritingPen();
+    } else {
+      penCharacter = null;
+      writingPen.hidden = true;
+    }
     typingFrame = cursor < typingCharacters.length ? requestAnimationFrame(tick) : null;
   }
   typingFrame = requestAnimationFrame(tick);
