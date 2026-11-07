@@ -25,14 +25,9 @@
 
 .writing-tool { display: block; overflow: visible; }
 .writing-grip { transform-origin: 3px 105px; animation: handwriting-motion 480ms ease-in-out infinite; }
-.writing-hand { transform-origin: 48px 63px; animation: finger-motion 700ms ease-in-out infinite alternate; }
 @keyframes handwriting-motion {
   0%, 100% { transform: translateY(1px) rotate(-1deg); }
   50% { transform: translateY(-3px) rotate(1deg); }
-}
-@keyframes finger-motion {
-  from { transform: rotate(-0.6deg); }
-  to { transform: rotate(0.8deg); }
 }
 
 .monglish-card { width: min(100%, 800px); }
