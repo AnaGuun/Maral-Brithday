@@ -10,7 +10,6 @@ const photoUrls = {
   "finale-bg": ["media/finale-bg.jpg", "media/finale-bg.jpeg", "media/finale-bg.png", "media/finale-bg.webp"]
 };
 
-const videoUrls = ["media/message.mp4", "media/message.webm", "media/message.mov"];
 
 function render() {
   lastPhotoTap = null;
@@ -168,38 +167,6 @@ function useFirstWorkingBackground(el, urls) {
 
 const finaleBg = document.querySelector('[data-slot="finale-bg"]');
 useFirstWorkingBackground(finaleBg, photoUrls["finale-bg"]);
-
-function useFirstWorkingVideo(video, urls) {
-  const frame = video.closest("[data-slot]");
-  let cursor = 0;
-
-  function tryNext() {
-    if (frame.dataset.preview === "true") return;
-    if (cursor >= urls.length) {
-      frame.classList.add("empty");
-      frame.classList.remove("ready");
-      return;
-    }
-    const candidate = urls[cursor];
-    cursor += 1;
-    video.onloadeddata = () => {
-      if (frame.dataset.preview === "true") return;
-      if (!matchesCandidate(video.currentSrc || video.src, candidate)) return;
-      frame.classList.add("ready");
-      frame.classList.remove("empty");
-    };
-    video.onerror = () => {
-      if (frame.dataset.preview === "true") return;
-      tryNext();
-    };
-    video.src = candidate;
-  }
-
-  tryNext();
-}
-
-const messageVideo = document.querySelector(".video-frame video");
-useFirstWorkingVideo(messageVideo, videoUrls);
 
 function applyFile(slot, file) {
   if (!file || slot.dataset.locked === "true") return;
