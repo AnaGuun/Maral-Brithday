@@ -395,7 +395,7 @@ function positionWritingPen() {
   if (!penCharacter || !penCharacter.isConnected) { writingPen.hidden = true; return; }
   const rect = penCharacter.getBoundingClientRect();
   writingPen.hidden = rect.bottom < 0 || rect.top > window.innerHeight || rect.right < 0 || rect.left > window.innerWidth;
-  writingPen.style.transform = `translate(${Math.min(rect.right, window.innerWidth - 36) - 3}px, ${rect.bottom - 44}px)`;
+  writingPen.style.transform = `translate(${Math.min(rect.right, window.innerWidth - 110) - 3}px, ${rect.bottom - 108}px)`;
 }
 document.addEventListener("scroll", positionWritingPen, { capture: true, passive: true });
 window.addEventListener("resize", positionWritingPen);
