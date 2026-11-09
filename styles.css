@@ -278,11 +278,6 @@ h1 {
 .instruction-card li + li { margin-top: 16px; }
 .instruction-card li::marker { color: var(--red); font-weight: 700; }
 
-.device-instructions { margin-top: 30px; }
-.device-instructions + .device-instructions { padding-top: 26px; border-top: 1px solid #dfc8b6; }
-.device-instructions h2 { margin: 0; font-family: "Cormorant Garamond", Palatino, Georgia, serif; font-size: 1.7rem; color: var(--red-deep); }
-.device-instructions ol { margin-top: 14px; }
-
 .page-song {
   background: radial-gradient(ellipse at 85% 10%, #efdce9, transparent 65%),
     linear-gradient(150deg, #fff9f2, #eee5f3);
