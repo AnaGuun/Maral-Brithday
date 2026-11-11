@@ -1401,3 +1401,38 @@ h1 {
 @media (max-width: 700px) {
   .finale-photos { grid-template-columns: minmax(0, 1fr); gap: 36px; }
 }
+
+/* Reference-inspired midnight background; existing content and paper panels stay intact. */
+html, body { background: #171a2b; }
+.page-welcome, .page:not(.page-welcome), .page:nth-child(even):not(.page-welcome) {
+  background:
+    radial-gradient(ellipse at 0% 100%, rgba(166,88,139,0.24), transparent 58%),
+    radial-gradient(ellipse at 100% 0%, rgba(43,113,112,0.18), transparent 55%),
+    linear-gradient(125deg, #202238 0%, #17264c 58%, #2b4078 100%);
+  box-shadow: inset 0 0 70px rgba(9,12,27,0.28);
+  color: #f6eddd;
+}
+.page:nth-child(even):not(.page-welcome) {
+  background:
+    radial-gradient(ellipse at 100% 90%, rgba(144,116,191,0.2), transparent 60%),
+    radial-gradient(ellipse at 0% 0%, rgba(176,103,146,0.14), transparent 52%),
+    linear-gradient(135deg, #202238, #19284f 62%, #263b6b);
+}
+.page:not(.page-welcome)::after {
+  border-color: rgba(181,169,218,0.3);
+  border-radius: 28px;
+}
+.page-welcome .welcome-content {
+  border-color: rgba(181,169,218,0.5);
+  outline-color: rgba(181,169,218,0.2);
+  border-radius: 28px;
+}
+.page-welcome::before { border-left-color: rgba(239,185,210,0.45); border-right-color: rgba(9,12,27,0.35); }
+.page-welcome h1, .page-welcome .eyebrow, .page-welcome .welcome-signature,
+.page-welcome .cover-date, .page-memories .section-head h1,
+.page-memories .section-head p, .page-note h1, .page-note .kiss-caption,
+.page-finale h1 { color: #f6eddd; }
+.page-cake .cake-hint { color: #f6eddd; }
+.page-cake .cake-instructions { background: rgba(36,46,78,0.8); border-color: rgba(181,169,218,0.4); color: #f6eddd; }
+.finale-bg::after { background: linear-gradient(180deg, rgba(17,24,45,0), rgba(17,24,45,0.08)); }
+.nav { background: linear-gradient(180deg, transparent, rgba(12,17,35,0.75) 65%); }
