@@ -249,24 +249,42 @@ function celebrate() {
   celebration.innerHTML = "";
   celebration.setAttribute("aria-label", "Celebration. Happy birthday, Maral.");
 
-  for (let i = 0; i < 56; i += 1) {
+  const candleBounds = document.querySelector(".candles").getBoundingClientRect();
+  const originX = candleBounds.left + candleBounds.width / 2;
+  const originY = candleBounds.top + candleBounds.height / 2;
+  for (let i = 0; i < 110; i += 1) {
     const piece = document.createElement("span");
-    piece.className = "confetti";
-    const end = `${8 + Math.random() * 84}%`;
-    piece.style.left = `${Math.random() * 100}%`;
-    piece.style.setProperty("--end", end);
-    piece.style.setProperty("--spin", `${180 + Math.random() * 540}deg`);
-    piece.style.background = partyColors[i % partyColors.length];
-    piece.style.width = `${6 + Math.random() * 8}px`;
-    piece.style.height = `${9 + Math.random() * 12}px`;
-    piece.style.borderRadius = Math.random() > 0.55 ? "2px" : "999px";
-    piece.style.animationDuration = `${1.6 + Math.random() * 1.8}s`;
-    piece.style.animationDelay = `${Math.random() * 0.35}s`;
-    if (reduceMotion) {
-      piece.style.animation = "none";
-      piece.style.top = end;
-    }
+    piece.className = "party-fragment";
+    const color = partyColors[i % partyColors.length];
+    piece.style.setProperty("--fragment-color", color);
+    piece.style.left = `${originX}px`;
+    piece.style.top = `${originY}px`;
+    piece.style.width = `${5 + Math.random() * 8}px`;
+    piece.style.height = `${5 + Math.random() * 12}px`;
+    if (i % 7 === 0) piece.classList.add("party-sparkle");
     celebration.appendChild(piece);
+    const duration = 3800 + Math.random() * 1700;
+    const vx = (Math.random() - 0.5) * window.innerWidth * 0.95;
+    const vy = -(350 + Math.random() * 340);
+    const spin = (Math.random() - 0.5) * 1500;
+    const frames = Array.from({ length: 13 }, (_, frame) => {
+      const progress = frame / 12;
+      const t = progress * duration / 1000;
+      const x = vx * t + Math.sin(t * 4 + i) * 16;
+      const y = vy * t + 0.5 * 400 * t * t;
+      return {
+        offset: progress,
+        opacity: progress < 0.72 ? 1 : (1 - progress) / 0.28,
+        transform: `translate3d(${x}px, ${y}px, 0) rotateX(${spin * progress}deg) rotateY(${spin * progress * 0.7}deg) rotateZ(${spin * progress * 0.4}deg)`
+      };
+    });
+    if (reduceMotion) {
+      piece.style.left = `${8 + Math.random() * 84}%`;
+      piece.style.top = `${12 + Math.random() * 65}%`;
+    }
+    const animation = piece.animate(reduceMotion ? [{ opacity: 1 }, { opacity: 0 }] : frames,
+      { duration: reduceMotion ? 1800 : duration, easing: "linear", fill: "forwards" });
+    animation.finished.then(() => piece.remove()).catch(() => {});
   }
 
   for (let i = 0; i < 12; i += 1) {
@@ -275,6 +293,7 @@ function celebrate() {
     const end = `${6 + Math.random() * 58}%`;
     balloon.style.left = `${4 + Math.random() * 88}%`;
     balloon.style.setProperty("--c", partyColors[i % partyColors.length]);
+    balloon.style.setProperty("--balloon-size", `${44 + Math.random() * 20}px`);
     balloon.style.setProperty("--end", end);
     balloon.style.setProperty("--drift", `${12 + Math.random() * 20}px`);
     balloon.style.animationDuration = `${2.4 + Math.random() * 1.6}s`;
@@ -289,21 +308,6 @@ function celebrate() {
       balloon.style.bottom = end;
     }
     celebration.appendChild(balloon);
-  }
-
-  for (let i = 0; i < 12; i += 1) {
-    const ribbon = document.createElement("span");
-    ribbon.className = "ribbon";
-    ribbon.style.left = `${Math.random() * 96}%`;
-    ribbon.style.setProperty("--c", partyColors[i % partyColors.length]);
-    ribbon.style.setProperty("--h", `${28 + Math.random() * 36}vh`);
-    ribbon.style.setProperty("--sway", `${10 + Math.random() * 10}deg`);
-    ribbon.style.animationDelay = `${Math.random() * 0.25}s`;
-    if (reduceMotion) {
-      ribbon.style.animation = "none";
-      ribbon.style.top = "0";
-    }
-    celebration.appendChild(ribbon);
   }
 
   relightButton.hidden = false;
@@ -321,6 +325,7 @@ candles.forEach((candle) => {
 
 function clearCelebration() {
   document.body.classList.remove("is-celebrating");
+  celebration.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
   celebration.innerHTML = "";
   celebration.hidden = true;
   celebration.removeAttribute("aria-label");

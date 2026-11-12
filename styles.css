@@ -1494,3 +1494,40 @@ html, body { background: #171a2b; }
   box-shadow: 0 1px 2px rgba(79,25,42,0.25);
 }
 .wax::before { z-index: 2; box-shadow: 0 -1px 2px rgba(255,146,33,0.45); }
+
+/* A single candle-triggered burst of tumbling, shiny paper fragments. */
+#celebration { perspective: 900px; }
+.party-fragment {
+  position: absolute;
+  border-radius: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.85), transparent 45%, rgba(0,0,0,0.2)), var(--fragment-color);
+  box-shadow: 1px 2px 2px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.6);
+  backface-visibility: visible;
+}
+.party-sparkle { clip-path: polygon(50% 0,62% 35%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 35%); }
+.balloon {
+  width: var(--balloon-size, 54px);
+  height: calc(var(--balloon-size, 54px) * 1.28);
+  border-radius: 50% 50% 47% 47% / 44% 44% 56% 56%;
+  background:
+    radial-gradient(ellipse at 28% 22%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.35) 12%, transparent 33%),
+    radial-gradient(ellipse at 68% 80%, rgba(0,0,0,0.23), transparent 70%),
+    var(--c);
+  box-shadow: inset -8px -12px 14px rgba(0,0,0,0.15), inset 4px 4px 9px rgba(255,255,255,0.3), 3px 8px 12px rgba(0,0,0,0.15);
+}
+.balloon::before {
+  width: 14px;
+  height: 90px;
+  border-left: 1px solid rgba(255,248,225,0.8);
+  border-radius: 50%;
+  background: none;
+  transform-origin: top left;
+  animation: balloon-string 2.3s ease-in-out infinite alternate;
+}
+@keyframes balloon-string {
+  from { transform: rotate(-9deg) skewX(-4deg); }
+  to { transform: rotate(12deg) skewX(5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .balloon::before { animation: none; }
+}
