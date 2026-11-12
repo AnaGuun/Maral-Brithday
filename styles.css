@@ -1436,3 +1436,61 @@ html, body { background: #171a2b; }
 .page-cake .cake-instructions { background: rgba(36,46,78,0.8); border-color: rgba(181,169,218,0.4); color: #f6eddd; }
 .finale-bg::after { background: linear-gradient(180deg, rgba(17,24,45,0), rgba(17,24,45,0.08)); }
 .nav { background: linear-gradient(180deg, transparent, rgba(12,17,35,0.75) 65%); }
+
+/* Rounded cake volumes, raised icing, and cylindrical wax candles. */
+.cake { filter: drop-shadow(0 22px 20px rgba(0,0,0,0.4)); }
+.tier-top {
+  height: 140px;
+  border-radius: 48% 48% 44% 44% / 24px 24px 28px 28px;
+  background-color: #efb5b8;
+  background-image:
+    linear-gradient(90deg, rgba(108,35,53,0.5), rgba(255,235,225,0.12) 22%, rgba(255,251,239,0.65) 42%, transparent 62%, rgba(125,36,58,0.45)),
+    radial-gradient(circle, #fff9e7 1.4px, transparent 1.7px);
+  background-size: 100% 100%, 24px 22px;
+  box-shadow: inset 0 -16px 20px rgba(110,28,51,0.27), inset 2px 0 5px rgba(255,255,255,0.35), 0 18px 18px rgba(0,0,0,0.25);
+}
+.tier-top::before {
+  top: -22px;
+  height: 48px;
+  background: radial-gradient(ellipse at 38% 28%, #fffef6 10%, #fff0df 50%, #eac1af 82%, #c58c83);
+  box-shadow: inset 0 -5px 3px rgba(133,64,66,0.15), inset 0 3px 3px #fff, 0 4px 2px rgba(140,58,67,0.12);
+}
+.drips span { box-shadow: 2px 3px 3px rgba(128,54,67,0.2), inset -2px -2px 2px #ead7c9; }
+.tier-bottom {
+  height: 156px;
+  border-radius: 48% 48% 44% 44% / 25px 25px 30px 30px;
+  background: linear-gradient(90deg, #963f5a, #eeb0c0 20%, #ffe5e5 40%, #f7c2cd 58%, #cb7b95 82%, #8e3656);
+  box-shadow: inset 0 -18px 18px rgba(94,28,48,0.25), inset 3px 0 5px rgba(255,255,255,0.3), 0 16px 20px rgba(0,0,0,0.3);
+}
+.tier-bottom::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 40% 35%, #fffdf4 15%, #ffe7df 70%, #dca8ad);
+  box-shadow: inset 0 -5px 2px rgba(155,76,94,0.18), inset 0 3px 2px #fff;
+}
+.ribbon-band { background: linear-gradient(90deg, #7e1937, #dc526d 30%, #f28b9d 46%, #c43b5d 68%, #7d1939); box-shadow: 0 3px 4px rgba(98,22,45,0.25); }
+.plate { border-radius: 50%; background: radial-gradient(ellipse at 40% 25%, #fffef4, #e0d5c6 68%, #a99584); box-shadow: 0 6px 0 #ac9584, 0 11px 0 #776273, 0 22px 22px rgba(0,0,0,0.35); }
+.candle .wax {
+  width: 20px;
+  border-radius: 50% 50% 40% 40% / 5px 5px 4px 4px;
+  background: linear-gradient(90deg, #9a8f8d, #fffdf4 30%, #fff 45%, #d4c6ba 72%, #8c7e7e);
+  box-shadow: inset -2px 0 3px rgba(65,27,38,0.25), 4px 5px 5px rgba(41,17,33,0.25);
+}
+.candle:nth-child(1) .wax, .candle:nth-child(3) .wax { background: linear-gradient(90deg, #7a142d, #eb546c 28%, #ff9bad 42%, #cf314e 67%, #78152f); }
+.wax::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #fff9db 0 18%, #dfb4a9 26%, #fff3d7 65%, #aa747a);
+  box-shadow: 0 1px 2px rgba(79,25,42,0.25);
+}
+.wax::before { z-index: 2; box-shadow: 0 -1px 2px rgba(255,146,33,0.45); }
