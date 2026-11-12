@@ -1531,3 +1531,17 @@ html, body { background: #171a2b; }
 @media (prefers-reduced-motion: reduce) {
   .balloon::before { animation: none; }
 }
+
+.kiss-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 28px;
+  width: min(calc(100% - 20px), 880px);
+  margin: 28px auto;
+}
+.kiss-gallery .together-wrap { width: 100%; }
+.kiss-gallery > figure:nth-child(2) .polaroid { transform: rotate(2deg); }
+@media (max-width: 600px) {
+  .kiss-gallery { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+}
