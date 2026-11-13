@@ -12,6 +12,28 @@
 .type-character { transition: opacity 80ms linear; }
 .type-pending { opacity: 0; }
 
+.back-cover-photo {
+  position: relative;
+  width: min(75%, 260px);
+  margin: 0 auto;
+  padding: 10px 10px 24px;
+  background: #fffaf3;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+  transform: rotate(-3deg);
+}
+.back-cover-photo img { display: block; width: auto; max-width: 100%; height: auto; max-height: 32vh; margin: 0 auto; }
+.back-cover-photo::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 30%;
+  width: 40%;
+  height: 24px;
+  background: rgba(226,192,161,0.75);
+  transform: rotate(6deg);
+  pointer-events: none;
+}
+
 #writing-pen {
   position: fixed;
   left: 0;
