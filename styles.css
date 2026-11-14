@@ -12,6 +12,9 @@
 .type-character { transition: opacity 80ms linear; }
 .type-pending { opacity: 0; }
 
+.kiss-invitation { margin: 0 auto 20px; max-width: 34rem; color: #f6eddd; font-size: 1rem; line-height: 1.6; }
+.back-cover-photo figcaption { margin-top: 12px; color: #7a3040; font-family: "Cormorant Garamond", Palatino, Georgia, serif; font-style: italic; font-size: 1.1rem; line-height: 1.4; }
+
 .back-cover-photo {
   position: relative;
   width: min(75%, 260px);
