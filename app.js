@@ -541,4 +541,6 @@ document.addEventListener("pointerup", (event) => {
 });
 document.addEventListener("pointercancel", () => { photoPress = null; lastPhotoTap = null; });
 
+document.getElementById("save-book-pdf").addEventListener("click", () => window.print());
+
 render();

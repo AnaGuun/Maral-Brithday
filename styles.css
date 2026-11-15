@@ -1570,3 +1570,79 @@ html, body { background: #171a2b; }
 @media (max-width: 600px) {
   .kiss-gallery { grid-template-columns: minmax(0, 1fr); gap: 34px; }
 }
+
+#save-book-pdf {
+  max-width: 90%;
+  padding: 15px 24px;
+  border: 1px solid rgba(244,219,239,0.6);
+  border-radius: 999px;
+  background: linear-gradient(110deg, #e7aac5, #b4a0e1);
+  color: #20243e;
+  font: 700 0.95rem Nunito, "Segoe UI", sans-serif;
+  box-shadow: 0 7px 20px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+#save-book-pdf:hover { filter: brightness(1.08); }
+
+@page { size: A4; margin: 12mm; }
+@media print {
+  html, body { height: auto !important; overflow: visible !important; background: #fff !important; }
+  body { font-size: 11pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .nav, .music-controls, #background-music, #celebration, #kiss-splash,
+  #writing-pen, #candle-warning, #save-book-pdf, #relight, .upload,
+  .memory-envelope, .scroll-reminder { display: none !important; }
+  #book { display: block !important; }
+  #book .page {
+    display: block !important;
+    position: relative !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    break-after: page;
+    background: #fffaf3 !important;
+    color: #49333e !important;
+    box-shadow: none !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+  #book .page:last-child { break-after: auto; }
+  .page::after, .page::before { display: none !important; }
+  .type-character, .type-pending { opacity: 1 !important; transition: none !important; }
+  #book .page-inner, #book .instruction-layout { width: 100%; padding: 8mm 4mm; min-height: 0; }
+  .instruction-card, .letter { width: 100%; max-width: none; padding: 6mm; box-shadow: none; }
+  .instruction-card h1, .letter h1, .page-note h1, .page-finale h1 { font-size: 28pt; }
+  #book .page:not(.page-welcome) h1, #book .page:not(.page-welcome) .section-head p,
+  #book .page:not(.page-welcome) .kiss-caption, #book .page:not(.page-welcome) .kiss-invitation,
+  #book .page-cake .cake-hint { color: #79354a; }
+  .page p, .page li, .page figcaption { orphans: 3; widows: 3; }
+  .page figure, .page img, .cake { break-inside: avoid; }
+  #book .page-welcome { background: #202840 !important; color: #f6eddd !important; }
+  #book .page-welcome .welcome-content {
+    width: 100%; min-height: 250mm; margin: 0; padding: 15mm;
+    gap: 10mm; box-sizing: border-box;
+  }
+  .page-welcome h1 { font-size: 44pt; }
+  .cover-date { position: static; margin-top: 8mm; }
+  .back-cover-photo { max-width: 95mm; }
+  .back-cover-photo img { max-height: 75mm; }
+  .instruction-with-photo { grid-template-columns: 50mm minmax(0,1fr); gap: 8mm; }
+  .cute-photo { width: 100%; }
+  .song-artwork { width: 55mm; margin: 8mm auto; }
+  #book .memory-packet, #book .memory-packet .memories { width: 100%; }
+  #book .memory-packet .memory-group-content { display: block !important; }
+  #book .memories { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8mm; }
+  .memory, .memory-content, .polaroid, .finale-photo, .song-artwork, .cute-photo,
+  .portrait-wrap, .back-cover-photo { transform: none !important; animation: none !important; }
+  #book .memory img { max-height: 90mm; width: 100%; object-fit: contain; }
+  .memory figcaption, .finale-photo figcaption { font-size: 12pt; }
+  .monglish-frame img { max-height: 95mm; width: 100%; object-fit: contain; }
+  .monglish-letter { font-size: 11pt; line-height: 1.6; }
+  .kiss-gallery, .finale-photos { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8mm; width: 100%; }
+  .kiss-gallery img, .finale-photo img { max-height: 155mm; object-fit: contain; }
+  .cake { width: 100mm; filter: none; }
+  .cake-instructions { background: #fff4df !important; color: #79354a !important; }
+  .flame, .flame::after { animation: none !important; }
+  .candle .flame { opacity: 1 !important; transform: none !important; }
+  .smoke { display: none !important; }
+}
