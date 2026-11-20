@@ -1,0 +1,132 @@
+/* Modern Photo Journal preview. Remove its stylesheet link to restore the original theme. */
+:root {
+  --red: #ac583e;
+  --red-deep: #46513e;
+  --ink: #30382f;
+  --rose: #cba18b;
+  --cream: #f8f5ed;
+  --gold: #b79b65;
+}
+html, body { background: #f7f4ec; }
+body { color: var(--ink); }
+#book::before {
+  content: "A LITTLE BOOK, A LOT OF LOVE";
+  position: fixed;
+  z-index: 45;
+  top: 32px;
+  left: 28px;
+  max-width: calc(100% - 220px);
+  color: #6b735f;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1.6;
+  pointer-events: none;
+}
+.page-welcome, .page:not(.page-welcome), .page:nth-child(even):not(.page-welcome) {
+  background: linear-gradient(135deg, #faf8f2, #f2eee4);
+  box-shadow: none;
+  color: var(--ink);
+}
+.page::before, .page:not(.page-welcome)::after { display: none; }
+h1, h2, .page-welcome h1, .page-welcome .eyebrow, .page-cake h1, .page-note h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.page-welcome h1, .page-welcome .eyebrow, .page-welcome .welcome-signature,
+.page-welcome .cover-date, .page-memories .section-head h1, .page-memories .section-head p,
+.page-note h1, .page-note .kiss-caption, .page-finale h1 { color: var(--red-deep); }
+.page-welcome:not(.page-back-cover) .welcome-content {
+  width: min(92vw, 1100px);
+  min-height: calc(100dvh - 200px);
+  margin: 90px auto 110px;
+  padding: 28px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: 1fr auto auto 1fr;
+  column-gap: clamp(32px, 6vw, 90px);
+  row-gap: 16px;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  text-align: left;
+}
+.page-welcome:not(.page-back-cover) .portrait-wrap { grid-column: 1; grid-row: 1 / 5; width: 100%; transform: none; }
+.page-welcome:not(.page-back-cover) .portrait {
+  width: 100%;
+  max-height: 65vh;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  border-radius: 2px;
+  background: #eee6d8;
+  box-shadow: 0 12px 32px rgba(56,61,45,0.12);
+}
+.page-welcome .portrait img { border-radius: 2px; }
+.page-welcome:not(.page-back-cover) .eyebrow { grid-column: 2; grid-row: 1; align-self: end; font-size: clamp(1.5rem, 3vw, 2.4rem); font-style: italic; color: #a1553e; }
+.page-welcome:not(.page-back-cover) h1 { grid-column: 2; grid-row: 2; padding: 0; font-size: clamp(4rem, 10vw, 9rem); line-height: 0.95; }
+.page-welcome:not(.page-back-cover) .welcome-signature { grid-column: 2; grid-row: 3; margin: 12px 0 0; font: 500 1rem Nunito, "Segoe UI", sans-serif; letter-spacing: 0.08em; }
+.page-welcome:not(.page-back-cover) .cover-date { grid-column: 2; grid-row: 4; position: static; align-self: start; margin: 8px 0 0; font: 500 0.8rem Nunito, "Segoe UI", sans-serif; letter-spacing: 0.08em; }
+.page-back-cover .welcome-content { width: min(88vw, 760px); min-height: calc(100dvh - 60px); padding: 100px 20px 140px; gap: 24px; border: none; outline: none; }
+.page-back-cover h1 { font-size: clamp(2.8rem, 7vw, 4.5rem); max-width: 16ch; }
+.cover-ornament { color: #a0a98f; }
+.instruction-card, .letter {
+  color: var(--ink);
+  background: rgba(255,255,255,0.55);
+  border: 1px solid #dfdfd2;
+  border-radius: 2px;
+  box-shadow: none;
+}
+.instruction-card h1, .letter h1 { color: var(--red-deep); font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; }
+.instruction-card li { line-height: 1.8; }
+.instruction-with-photo { align-items: start; gap: 40px; }
+.instruction-layout { padding-left: 24px; padding-right: 24px; }
+.song-label { color: #a1553e; }
+.song-credit { color: #46513e; border-color: #d8dccd; }
+.cute-photo, .song-artwork, .polaroid, .memory, .memory:nth-child(even), .finale-photo,
+.finale-photo:nth-child(even), .back-cover-photo, .kiss-gallery > figure:nth-child(2) .polaroid,
+.memory-packet .memory, .memory-packet .memory:nth-child(even) { transform: none; }
+.cute-photo, .song-artwork, .polaroid, .memory-content, .finale-photo, .back-cover-photo {
+  border: 1px solid #dfdfd2;
+  background: #fffdf8;
+  border-radius: 2px;
+  box-shadow: 0 8px 24px rgba(55,61,44,0.08);
+}
+.cute-photo::before, .song-artwork::before, .polaroid::before, .memory .frame::before,
+.portrait-wrap::after, .finale-photo::before, .back-cover-photo::before { display: none; }
+.memory figcaption, .finale-photo figcaption, .back-cover-photo figcaption { color: #56604c; }
+.monglish-frame { border-color: #d5d9cd; box-shadow: none; }
+.monglish-letter { color: var(--ink); }
+.memory-packet > .memory-envelope { transform: none; border-color: #c8cbb9; background: linear-gradient(145deg, #eff0e3 50%, #d6dbc5 50%); box-shadow: 0 12px 26px rgba(55,61,44,0.1); color: #46513e; }
+.envelope-flap { background: linear-gradient(#f9f9ef, #ccd4b7); }
+.envelope-seal { background: #a4563d; color: #fff2d5; }
+.scroll-reminder { color: #fdfaf0; background: linear-gradient(110deg, #46513e, #778366); border-color: #a6ae92; box-shadow: none; border-radius: 4px; font-size: 0.8rem; }
+.page-cake .cake-hint { color: var(--red-deep); }
+.page-cake .cake-instructions { color: #46513e; background: #eeeee2; border-color: #d3d8c6; border-radius: 4px; }
+.finale-bg::after { background: none; }
+.nav { background: linear-gradient(180deg, rgba(247,244,236,0), rgba(247,244,236,0.95) 50%, #f7f4ec); }
+.back, .next { background: #a9573e; border: 1px solid #a9573e; color: #fffaf1; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.back:hover:not(:disabled), .next:hover:not(:disabled) { border-color: #87422d; background: #87422d; }
+.count { background: transparent; color: #46513e; }
+.dot { background: #f9f7f0; box-shadow: 0 0 0 1px #7c886b; }
+.dot.on { background: #6b7959; box-shadow: 0 0 0 2px #f7f4ec, 0 0 0 3px #6b7959; }
+.love-credit { color: #6b735f; }
+.music-controls { background: rgba(251,249,241,0.9); border: 1px solid #dedfd1; color: #56604c; box-shadow: 0 3px 12px rgba(55,61,44,0.06); }
+#music-toggle[aria-pressed="true"] { background: #e6eadb; }
+#music-volume { accent-color: #6b7959; }
+#save-book-pdf { color: #fffaf1; border-color: #a9573e; background: #a9573e; box-shadow: none; }
+@media (max-width: 700px) {
+  #book::before { top: 24px; left: 16px; max-width: calc(100% - 190px); font-size: 0.55rem; letter-spacing: 0.12em; }
+  .page-welcome:not(.page-back-cover) .welcome-content { display: flex; width: min(90vw, 480px); min-height: 0; margin: 90px auto 130px; padding: 16px 10px; gap: 18px; text-align: center; }
+  .page-welcome:not(.page-back-cover) .portrait-wrap { order: 0; width: min(90%, 320px); }
+  .page-welcome:not(.page-back-cover) .portrait { width: 100%; max-height: 48vh; aspect-ratio: 3 / 4; }
+  .page-welcome:not(.page-back-cover) .eyebrow { order: 1; align-self: center; font-size: 1.8rem; }
+  .page-welcome:not(.page-back-cover) h1 { order: 2; font-size: 4.5rem; }
+  .page-welcome:not(.page-back-cover) .welcome-signature { order: 3; }
+  .page-welcome:not(.page-back-cover) .cover-date { order: 4; align-self: center; font-size: 0.75rem; }
+  .instruction-with-photo { grid-template-columns: minmax(0,1fr); }
+  .instruction-card, .letter { padding: 24px 18px; }
+  .page-back-cover .welcome-content { padding-top: 100px; }
+}
+.envelope-half { background: linear-gradient(145deg, #eff0e3 50%, #d6dbc5 50%); border-color: #c8cbb9; color: #46513e; }
+.memory-packet.is-opening > .memory-envelope { background: transparent; border-color: transparent; box-shadow: none; }
