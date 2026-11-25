@@ -465,24 +465,22 @@ document.querySelectorAll(".memory-packet").forEach((memory) => {
   envelope.addEventListener("click", async () => {
     envelope.disabled = true;
     envelope.setAttribute("aria-expanded", "true");
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const artwork = envelope.innerHTML;
-      const halves = ["top", "bottom"].map((side) => {
-        const half = document.createElement("span");
-        half.className = `memory-envelope envelope-half envelope-half-${side}`;
-        half.innerHTML = artwork;
-        half.setAttribute("aria-hidden", "true");
-        envelope.appendChild(half);
-        return half;
-      });
-      memory.classList.add("is-opening");
-      await Promise.all(halves.map((half, i) => half.animate([
-        { opacity: 1, transform: "translate(0, 0) rotate(0deg)", offset: 0 },
-        { opacity: 1, transform: `translate(${i ? 8 : -8}px, ${i ? 12 : -12}px) rotate(${i ? 3 : -3}deg)`, offset: 0.3 },
-        { opacity: 0, transform: `translate(${i ? 45 : -45}px, ${i ? 100 : -100}px) rotate(${i ? 16 : -16}deg)`, offset: 1 }
-      ], { duration: 1100, easing: "cubic-bezier(.3,0,.2,1)", fill: "forwards" }).finished.catch(() => {})));
-      halves.forEach((half) => half.remove());
-    }
+    const artwork = envelope.innerHTML;
+    const halves = ["top", "bottom"].map((side) => {
+      const half = document.createElement("span");
+      half.className = `memory-envelope envelope-half envelope-half-${side}`;
+      half.innerHTML = artwork;
+      half.setAttribute("aria-hidden", "true");
+      envelope.appendChild(half);
+      return half;
+    });
+    memory.classList.add("is-opening");
+    await Promise.all(halves.map((half, i) => half.animate([
+      { opacity: 1, transform: "translate(0, 0) rotate(0deg)", offset: 0 },
+      { opacity: 1, transform: `translate(${i ? 12 : -12}px, ${i ? 24 : -24}px) rotate(${i ? 3 : -3}deg)`, offset: 0.4 },
+      { opacity: 0, transform: `translate(${i ? 60 : -60}px, ${i ? 130 : -130}px) rotate(${i ? 16 : -16}deg)`, offset: 1 }
+    ], { duration: 1500, easing: "cubic-bezier(.3,0,.2,1)", fill: "forwards" }).finished.catch(() => {})));
+    halves.forEach((half) => half.remove());
     envelope.hidden = true;
     memory.classList.remove("is-sealed", "is-opening");
     memory.classList.add("is-open");

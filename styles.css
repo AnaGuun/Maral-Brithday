@@ -1650,3 +1650,12 @@ html, body { background: #171a2b; }
   .candle .flame { opacity: 1 !important; transform: none !important; }
   .smoke { display: none !important; }
 }
+
+/* Keep both torn halves visible while they pull apart, including on mobile. */
+.memory-packet.is-opening > .memory-envelope {
+  overflow: visible;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.envelope-half { will-change: transform, opacity; backface-visibility: visible; }
